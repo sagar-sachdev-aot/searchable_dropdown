@@ -437,7 +437,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   int indexFromValue(T value) {
     return (widget.items.indexWhere((item) {
-      return (item.value == value);
+      return (item.val == value);
     }));
   }
 
@@ -751,11 +751,11 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       Function matchFn;
       if (widget.isCaseSensitiveSearch) {
         matchFn = (item, keyword) {
-          return (item.value.toString().contains(keyword));
+          return (item.val.toString().contains(keyword));
         };
       } else {
         matchFn = (item, keyword) {
-          return (item.value
+          return (item.val
               .toString()
               .toLowerCase()
               .contains(keyword.toLowerCase()));
@@ -978,7 +978,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                           widget.selectedItems.contains(shownIndexes[index]))
                   : widget.displayItem == null
                       ? item
-                      : widget.displayItem(item, item.value == selectedResult),
+                      : widget.displayItem(item, item.val == selectedResult),
             );
           },
           itemCount: shownIndexes.length,
