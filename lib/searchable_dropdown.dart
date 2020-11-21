@@ -78,6 +78,8 @@ class SearchableDropdown<T> extends StatefulWidget {
   final Function validator;
   final bool multipleSelection;
   final List<int> selectedItems;
+  final List<String> searchItems;
+
   final Function displayItem;
   final bool dialogBox;
   final BoxConstraints menuConstraints;
@@ -121,6 +123,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     @required List<DropdownMenuItem<T>> items,
     @required Function onChanged,
     T value,
+    List<String> searchItems,
     TextStyle style,
     dynamic searchHint,
     dynamic hint,
@@ -150,7 +153,9 @@ class SearchableDropdown<T> extends StatefulWidget {
     Color menuBackgroundColor,
   }) {
     return (SearchableDropdown._(
+
       key: key,
+      searchItems: searchItems,
       items: items,
       onChanged: onChanged,
       value: value,
@@ -309,6 +314,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.searchFn,
     this.multipleSelection = false,
     this.selectedItems = const [],
+    this.searchItems,
     this.doneButton,
     this.displayItem,
     this.dialogBox,
@@ -349,6 +355,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.searchFn,
     this.multipleSelection = false,
     this.selectedItems = const [],
+    this.searchItems,
     this.doneButton,
     this.displayItem,
     this.dialogBox = true,
@@ -689,7 +696,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final Function searchFn;
   final bool multipleSelection;
   final List<int> selectedItems;
-  final List<int> searchItems;
+  final List<String> searchItems;
   final Function displayItem;
   final dynamic doneButton;
   final Function validator;
