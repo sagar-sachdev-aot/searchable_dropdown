@@ -437,7 +437,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   int indexFromValue(T value) {
     return (widget.items.indexWhere((item) {
-      return (item.val == value);
+      return (item.child == value);
     }));
   }
 
@@ -689,6 +689,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final Function searchFn;
   final bool multipleSelection;
   final List<int> selectedItems;
+  final List<int> searchItems;
   final Function displayItem;
   final dynamic doneButton;
   final Function validator;
@@ -708,6 +709,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.searchFn,
     this.multipleSelection,
     this.selectedItems,
+    this.searchItems,
     this.displayItem,
     this.doneButton,
     this.validator,
@@ -751,11 +753,11 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       Function matchFn;
       if (widget.isCaseSensitiveSearch) {
         matchFn = (item, keyword) {
-          return (item.val.toString().contains(keyword));
+          return (item.toString().contains(keyword));
         };
       } else {
         matchFn = (item, keyword) {
-          return (item.val
+          return (item
               .toString()
               .toLowerCase()
               .contains(keyword.toLowerCase()));
@@ -764,7 +766,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       searchFn = (keyword, items) {
         List<int> shownIndexes = [];
         int i = 0;
-        widget.items.forEach((item) {
+        widget.searchItems.forEach((item) {
           if (matchFn(item, keyword) || (keyword?.isEmpty ?? true)) {
             shownIndexes.add(i);
           }
