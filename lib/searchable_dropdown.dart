@@ -153,7 +153,6 @@ class SearchableDropdown<T> extends StatefulWidget {
     Color menuBackgroundColor,
   }) {
     return (SearchableDropdown._(
-
       key: key,
       searchItems: searchItems,
       items: items,
@@ -440,6 +439,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
         : selectedItems?.isNotEmpty ?? false
             ? widget.items[selectedItems.first]?.value
             : null);
+  }
+
+  dynamic get searchItems {
+    return (widget.searchItems);
   }
 
   int indexFromValue(T value) {
@@ -746,6 +749,9 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
         : widget.selectedItems?.isNotEmpty ?? false
             ? widget.items[widget.selectedItems.first]?.value
             : null);
+  }
+  dynamic get searchItems {
+    return (widget.searchItems);
   }
 
   void _updateShownIndexes(String keyword) {
